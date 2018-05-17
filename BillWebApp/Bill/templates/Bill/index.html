@@ -1,0 +1,44 @@
+{% extends "bill/base.html" %}
+
+{% block main_content %}
+
+{% if bills %}
+<div class= "container">
+  <h2> Bills </h2>
+  <h4>
+     <a href="{% url 'bill:index' %}?q=-Date" class="btn btn-primary"> Order By Date</a>
+     <a href="{% url 'bill:index' %}?q=Category"class="btn btn-primary"> Order By Category</a>
+     <a href="{% url 'bill:index' %}" class="btn btn-primary"> Refresh</a>
+     <a href="{% url 'bill:bill_add' %}" class="btn btn-danger">Add Bill</a>
+  </h4>
+  <table class="table"> 
+    <thead>
+      <tr>
+        <th> Customer </th>
+        <th> Date</th>
+        <th> Category</th>
+        <th> Amount</th>     
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in bills %}
+      <tr>      
+        <th> <b id="question"> {{b.Customer}} </b></th>
+        <td> {{b.Date}} </td>
+        <td> {{b.Category}} </td>
+        <td> {{b.Amount}} $ </td>
+        
+        <td> <a href = {% url "bill:bill_delete" b.id %}> <span class= "glyphicon glyphicon-trash" ></span></a></td>
+        <td> <a href = {% url "bill:bill_edit" b.id %}> <span class= "glyphicon glyphicon-wrench" ></span> Edit</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>  
+</div>   
+{% else %}
+    <p> You don't have any bills, please add some </p>
+    <a href="{% url 'bill:bill_add' %}" class="btn btn-danger">Add Bill</a>
+{% endif %} 
+
+{% endblock %}

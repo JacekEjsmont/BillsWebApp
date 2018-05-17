@@ -1,0 +1,10 @@
+{% extends 'Bill/base.html' %}
+
+{% block main_content %}
+
+<h3> Please Log In </h3>
+ <form action="" method="post">{% csrf_token %}
+     {{ form.as_p }}
+     <input type="submit" value="Log In" class="btn btn-primary"/>
+ </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'bill/base.html' %}
+
+{% block main_content %}
+<div>
+ <form action="" method="post">{% csrf_token %}
+
+       <p><strong>Are you sure you want to delete the bill?: </strong> "{{ object }}, {{ object.Category }}, {{ object.Amount }}$"?</p>
+     <input type="submit" value="Confirm" class="btn btn-primary" />
+     <a href= "{% url 'bill:index' %}"><input type="button" value="No. Back To Bills" class="btn btn-primary"/> </a>
+ </form>
+</div>
+{% endblock %}
